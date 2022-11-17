@@ -7,28 +7,15 @@ import { UpdateContenidoExtraDto } from './dto/update-contenido-extra.dto';
 export class ContenidoExtraController {
   constructor(private readonly contenidoExtraService: ContenidoExtraService) {}
 
-  @Post()
-  create(@Body() createContenidoExtraDto: CreateContenidoExtraDto) {
-    return this.contenidoExtraService.create(createContenidoExtraDto);
+  @Get('id/:id')
+  async findUnique(@Param('id') id: string) {
+    return this.contenidoExtraService.contenidoExtra({ id: Number(id) });
   }
 
-  @Get()
-  findAll() {
-    return this.contenidoExtraService.findAll();
+  @Post('create')
+  async create(@Body() data: CreateContenidoExtraDto) {
+    return this.contenidoExtraService.newContenidoExtra(data);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.contenidoExtraService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateContenidoExtraDto: UpdateContenidoExtraDto) {
-    return this.contenidoExtraService.update(+id, updateContenidoExtraDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.contenidoExtraService.remove(+id);
-  }
+  
 }

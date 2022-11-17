@@ -1,26 +1,35 @@
 import { Injectable } from '@nestjs/common';
 import { CreateContenidoExtraDto } from './dto/create-contenido-extra.dto';
-import { UpdateContenidoExtraDto } from './dto/update-contenido-extra.dto';
+import { PrismaService } from 'src/prisma.service';
 
 @Injectable()
 export class ContenidoExtraService {
-  create(createContenidoExtraDto: CreateContenidoExtraDto) {
-    return 'This action adds a new contenidoExtra';
+  constructor(private prisma: PrismaService) {}
+
+  async contenidoExtra(contenidoExtraWhereUniqueInput: Prisma.ContenidoExtraWhereUniqueInput): Promise<ContenidoExtra | null> {
+    return this.prisma.contenidoExtra.findUnique({
+      where: contenidoExtraWhereUniqueInput,
+    });
   }
 
-  findAll() {
-    return `This action returns all contenidoExtra`;
+  async contenidoExtras(params: {
+    skip?: number;
+    take?: number;
+    cursor?: Prisma.ContenidoExtraWhereUniqueInput;
+    where?: Prisma.ContenidoExtraWhereInput;
+  }): Promise<ContenidoExtra[]> {
+    const { skip, take, cursor, where } = params;
+    return this.prisma.contenidoExtra.findMany({
+      skip,
+      take,
+      cursor,
+      where,
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} contenidoExtra`;
-  }
-
-  update(id: number, updateContenidoExtraDto: UpdateContenidoExtraDto) {
-    return `This action updates a #${id} contenidoExtra`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} contenidoExtra`;
+  async newContenidoExtra(data: Prisma.ContenidoExtraCreateInput): Promise<ContenidoExtra> {
+    return this.prisma.contenidoExtra.create({
+      data,
+    });
   }
 }
