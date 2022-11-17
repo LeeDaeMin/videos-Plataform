@@ -6,6 +6,44 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model usuario{
+  id Int @id @default(autoincrement())
+  username String @db.VarChar(255)
+  user_comentario user_comentario[]
+}
+
+model admin{
+  id Int @id @default(autoincrement())
+  username String @db.VarChar(255)
+}
+
+model video{
+  id Int @id @default(autoincrement())
+  visualizaciones Int 
+  author String
+  fecha DateTime   @default(now())
+  titulo String
+  descripcion String
+  comentario comentario[]
+}
+
+model comentario{
+  id Int @id @default(autoincrement())
+  videoR    video?    @relation(fields: [videoId], references: [id])
+  videoId  Int
+  user_comentario user_comentario[]
+  comentario String @db.VarChar(255)
+}
+
+model user_comentario{
+  id Int @id @default(autoincrement())
+  userR    usuario?    @relation(fields: [user_id], references: [id])
+  user_id  Int
+  comentarioR    comentario?    @relation(fields: [comentarioId], references: [id])
+  comentarioId  Int
+}
+
