@@ -29,6 +29,15 @@ model video{
   titulo String
   descripcion String
   comentario comentario[]
+  contenido_extra contenido_extra[]
+}
+
+model contenido_extra{
+  id Int @id @default(autoincrement())
+  videoR    video?    @relation(fields: [videoId], references: [id])
+  videoId  Int
+  descripcion String 
+  archivo String
 }
 
 model comentario{
