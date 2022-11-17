@@ -1,3 +1,4 @@
 export class Admin {
-    nombre: string;
+    id: number;
+    username: string;
 }
