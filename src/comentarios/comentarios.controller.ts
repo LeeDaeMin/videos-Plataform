@@ -1,6 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { ComentariosService } from './comentarios.service';
 import { CreateComentarioDto } from './dto/create-comentario.dto';
+import {comentario as ComentarioModel} from '@prisma/client'
 
 @Controller('comentarios')
 export class ComentariosController {

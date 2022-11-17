@@ -1,6 +1,7 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { AdminService } from './admin.service';
 import { CreateAdminDto } from './dto/create-admin.dto';
+import {admin as AdminModel} from '@prisma/client';
 
 
 
@@ -9,13 +10,12 @@ export class AdminController {
   constructor(private readonly AdminService: AdminService) {}
 
   @Get('/id/:id')
-  async getAdmin(@Param('id') id: string):
-  Promise<AdminModel>{
-    return this.AdminService.admin({id: Number(id)})
+  async getAdmin(@Param('id') id: string): Promise<AdminModel>{
+    return this.AdminService.admin({ id: Number(id) });
   }
 
   @Post('/createAdmin')
-  async createAdmin(@Body() CreateAdminDto: CreateAdminDto): Promide<AdminModel>{
+  async createAdmin(@Body() CreateAdminDto: CreateAdminDto): Promise<AdminModel>{
     return this.AdminService.newAdmin(CreateAdminDto);
   }
 }

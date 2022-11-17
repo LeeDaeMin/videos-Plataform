@@ -1,25 +1,25 @@
 import { Injectable } from '@nestjs/common';
-import { CreateComentarioDto } from './dto/create-comentario.dto';
 import { PrismaService } from '../prisma.service';
+import {comentario, Prisma} from '@prisma/client';
 
 @Injectable()
 export class ComentariosService {
   constructor(private prisma: PrismaService) {}
 
-  async comment(commentWhereUniqueInput: Prisma.CommentWhereUniqueInput): Promise<Comment | null> {
-    return this.prisma.comment.findUnique({
-      where: commentWhereUniqueInput,
+  async comment(comentarioWhereUniqueInput: Prisma.comentarioWhereUniqueInput): Promise<comentario | null> {
+    return this.prisma.comentario.findUnique({
+      where: comentarioWhereUniqueInput,
     });
   }
 
-  async comments(params: {
+  async comentario(params: {
     skip?: number;
     take?: number;
-    cursor?: Prisma.CommentWhereUniqueInput;
-    where?: Prisma.CommentWhereInput;
-  }): Promise<Comment[]> {
+    cursor?: Prisma.comentarioWhereUniqueInput;
+    where?: Prisma.comentarioWhereInput;
+  }): Promise<comentario[]> {
     const { skip, take, cursor, where } = params;
-    return this.prisma.comment.findMany({
+    return this.prisma.comentario.findMany({
       skip,
       take,
       cursor,
@@ -27,8 +27,8 @@ export class ComentariosService {
     });
   }
 
-  async newComment(data: Prisma.CommentCreateInput): Promise<Comment> {
-    return this.prisma.comment.create({
+  async newComment(data: Prisma.comentarioCreateInput): Promise<comentario> {
+    return this.prisma.comentario.create({
       data,
     });
   }
