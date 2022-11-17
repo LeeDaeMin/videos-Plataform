@@ -1,26 +1,36 @@
 import { Injectable } from '@nestjs/common';
 import { CreateVideoDto } from './dto/create-video.dto';
-import { UpdateVideoDto } from './dto/update-video.dto';
+import { PrismaService } from 'src/prisma.service';
 
 @Injectable()
 export class VideoService {
-  create(createVideoDto: CreateVideoDto) {
-    return 'This action adds a new video';
+  constructor(private prisma: PrismaService) {}
+
+  async video(videoWhereUniqueInput: Prisma.VideoWhereUniqueInput): Promise<Video | null> {
+    return this.prisma.video.findUnique({
+      where: videoWhereUniqueInput,
+    });
   }
 
-  findAll() {
-    return `This action returns all video`;
+  async videos(params: {
+    skip?: number;
+    take?: number;
+    cursor?: Prisma.VideoWhereUniqueInput;
+    where?: Prisma.VideoWhereInput;
+  }): Promise<Video[]> {
+    const { skip, take, cursor, where } = params;
+    return this.prisma.video.findMany({
+      skip,
+      take,
+      cursor,
+      where,
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} video`;
+  async newVideo(data: Prisma.VideoCreateInput): Promise<Video> {
+    return this.prisma.video.create({
+      data,
+    });
   }
 
-  update(id: number, updateVideoDto: UpdateVideoDto) {
-    return `This action updates a #${id} video`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} video`;
-  }
 }
