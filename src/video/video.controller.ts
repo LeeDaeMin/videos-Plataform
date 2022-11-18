@@ -17,5 +17,9 @@ export class VideoController {
   async newVideo(@Body() CreateVideoDto: CreateVideoDto) : Promise<videoModel> {
     return this.videoService.newVideo(CreateVideoDto);
   }
-
+  
+  @Delete('Deletevideo/:id')
+  async deletePost(@Param('id') id: string): Promise<videoModel> {
+    return this.videoService.deleteVideo({ id: Number(id) });
+  }
 }

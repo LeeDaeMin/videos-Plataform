@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { ComentariosService } from './comentarios.service';
-import { CreateComentarioDto } from './dto/create-comentario.dto';
-import {comentario as ComentarioModel} from '@prisma/client'
+import { CreateComentarioDto, CreateUser_ComentarioDto } from './dto/create-comentario.dto';
+import {comentario as ComentarioModel, user_comentario as UserComentModel} from '@prisma/client'
 
 @Controller('comentarios')
 export class ComentariosController {
@@ -14,7 +14,12 @@ export class ComentariosController {
   }
 
   @Post('/createComment')
-  async createComment(@Body() CreateComentarioDto: CreateComentarioDto): Promise<ComentarioModel>{
-    return this.ComentariosService.newComment(CreateComentarioDto);
+  async createComment(@Body() dato: CreateUser_ComentarioDto): Promise<UserComentModel>{
+    return this.ComentariosService.newComment(dato);
+  }
+
+  @Delete('DeleteComment/:id')
+  async deletePost(@Param('id') id: string): Promise<ComentarioModel> {
+    return this.ComentariosService.deleteComentario({ id: Number(id) });
   }
 }

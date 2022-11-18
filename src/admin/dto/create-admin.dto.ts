@@ -1,3 +1,8 @@
+import { IsString, MaxLength, MinLength } from "class-validator";
+
 export class CreateAdminDto {
-    nombreAdmin: string;
+    @IsString()
+    @MinLength(2)
+    @MaxLength(10)
+    username: string;
 }

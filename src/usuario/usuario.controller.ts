@@ -17,6 +17,10 @@ export class UsuarioController {
   async newUsuario(@Body() createUsuarioDto: CreateUsuarioDto): Promise<UsuarioModel> {
     return this.usuarioService.newUsuario(createUsuarioDto);
   }
+  @Delete('deleteuser/:id')
+  async deletePost(@Param('id') id: string): Promise<UsuarioModel> {
+    return this.usuarioService.deleteUser({ id: Number(id) });
+  }
 
 }
 

@@ -33,4 +33,10 @@ export class VideoService {
     });
   }
 
+  async deleteVideo(where: Prisma.videoWhereUniqueInput): Promise<video> {
+    return this.prisma.video.delete({
+      where,
+    });
+  }
+
 }

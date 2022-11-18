@@ -33,4 +33,10 @@ export class ContenidoExtraService {
       data,
     });
   }
+
+  async deleteContenidoExtra(where: Prisma.contenido_extraWhereUniqueInput): Promise<contenido_extra> {
+    return this.prisma.contenido_extra.delete({
+      where,
+    });
+  }
 }

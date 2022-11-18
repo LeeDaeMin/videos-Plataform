@@ -18,5 +18,8 @@ export class ContenidoExtraController {
     return this.contenidoExtraService.newContenidoExtra(CreateContenidoExtraDto);
   }
 
-  
+  @Delete('DeleteContenido/:id')
+  async deletePost(@Param('id') id: string): Promise<coexModel> {
+    return this.contenidoExtraService.deleteContenidoExtra({ id: Number(id) });
+  }
 }

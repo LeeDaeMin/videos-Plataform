@@ -9,12 +9,12 @@ import {admin as AdminModel} from '@prisma/client';
 export class AdminController {
   constructor(private readonly AdminService: AdminService) {}
 
-  @Get('/id/:id')
+  @Get('/:id')
   async getAdmin(@Param('id') id: string): Promise<AdminModel>{
     return this.AdminService.admin({ id: Number(id) });
   }
 
-  @Post('/createAdmin')
+  @Post('/new')
   async createAdmin(@Body() CreateAdminDto: CreateAdminDto): Promise<AdminModel>{
     return this.AdminService.newAdmin(CreateAdminDto);
   }

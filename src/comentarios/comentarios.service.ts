@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma.service';
-import {comentario, Prisma} from '@prisma/client';
+import {comentario, Prisma,user_comentario} from '@prisma/client';
 
 @Injectable()
 export class ComentariosService {
@@ -27,9 +27,15 @@ export class ComentariosService {
     });
   }
 
-  async newComment(data: Prisma.comentarioCreateInput): Promise<comentario> {
-    return this.prisma.comentario.create({
+  async newComment(data: Prisma.user_comentarioCreateInput): Promise<user_comentario> {
+    return this.prisma.user_comentario.create({
       data,
+    });
+  }
+
+  async deleteComentario(where: Prisma.comentarioWhereUniqueInput): Promise<comentario> {
+    return this.prisma.comentario.delete({
+      where,
     });
   }
 }
