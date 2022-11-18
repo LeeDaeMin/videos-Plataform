@@ -8,6 +8,11 @@ import { contenido_extra as coexModel } from '@prisma/client';
 export class ContenidoExtraController {
   constructor(private readonly contenidoExtraService: ContenidoExtraService) {}
 
+  @Get('all')
+  async findAll(): Promise<coexModel[]> {
+    return this.contenidoExtraService.contenidoExtras({}); 
+  }
+
   @Get('id/:id')
   async findUnique(@Param('id') id: string): Promise<coexModel> {
     return this.contenidoExtraService.contenidoExtra({ id: Number(id) });

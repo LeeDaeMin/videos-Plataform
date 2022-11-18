@@ -1,3 +1,3 @@
 export class CreateAdminDto {
-    nombreAdmin: string;
+    username: string;
 }

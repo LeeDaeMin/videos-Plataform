@@ -7,6 +7,11 @@ import {comentario as ComentarioModel} from '@prisma/client'
 export class ComentariosController {
   constructor(private readonly ComentariosService: ComentariosService) {}
 
+  @Get('all')
+  async findAll(): Promise<ComentarioModel[]> {
+    return this.ComentariosService.comentario({});
+  }
+
   @Get('/id/:id')
   async getComment(@Param('id') id: string):
   Promise<ComentarioModel>{
