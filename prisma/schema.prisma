@@ -45,6 +45,7 @@ model comentario{
   videoR    video?    @relation(fields: [videoId], references: [id])
   videoId  Int
   user_comentario user_comentario[]
+  comentario String @db.VarChar(255)
 }
 
 model user_comentario{
@@ -53,5 +54,4 @@ model user_comentario{
   user_id  Int
   comentarioR    comentario?    @relation(fields: [comentarioId], references: [id])
   comentarioId  Int
-  comentario String @db.VarChar(255)
 }
