@@ -1,19 +1,12 @@
 import { IsString,MinLength,MaxLength,IsInt,Min,IsPositive } from "class-validator";
+import { PartialType } from "@nestjs/swagger";
 
-// export class CreateComentarioDto {
-
-//   @IsInt()
-//   @Min(1)
-//   @IsPositive()
-//   id_video: number;
-// }
-
-export class CreateUser_ComentarioDto {
+export class CreateUser_CommentDto {
 
 @IsString()
 @MinLength(10)
 @MaxLength(80)
-comentario: string;
+comment: string;
 
 
 @IsInt()
@@ -28,3 +21,5 @@ videoId: number;
 user_id: number;
 
 }
+
+export class UpdateUser_CommentDto extends PartialType(CreateUser_CommentDto) {}

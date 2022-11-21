@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma.service';
-import { video, Prisma, usuario, user_comentario } from '@prisma/client';
+import { video, Prisma } from '@prisma/client';
 
 
 
@@ -37,7 +37,7 @@ export class VideoService {
 
   async deleteVideo(where: Prisma.videoWhereUniqueInput): Promise<video> {
     return this.prisma.video.delete({
-      where,
+      where
     });
   }
 
@@ -50,12 +50,12 @@ export class VideoService {
                 contenido_extra:{
                   select:{
                     descripcion:true,
-                    archivo:true
+                    file:true
                   }
                 },
                 user_comentario:{
                    select:{
-                    comentario:true,
+                    comment:true,
                     user_id:true,
                     fecha:true,
                     userR:{

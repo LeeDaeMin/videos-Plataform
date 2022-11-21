@@ -13,7 +13,7 @@ datasource db {
 model usuario{
   id Int @id @default(autoincrement())
   username String @db.VarChar(255) @unique
-  perfil String?
+  profile String?
   user_comentario user_comentario[]
 }
 
@@ -24,22 +24,22 @@ model admin{
 
 model video{
   id Int @id @default(autoincrement())
-  visualizaciones Int 
+  view Int 
   src String
   author String
   fecha DateTime   @default(now())
-  titulo String
+  title String
   descripcion String
-  contenido_extra contenido_extra[]
+  contenido_extra BonusContent[]
   user_comentario user_comentario[]
 }
 
-model contenido_extra{
+model BonusContent{
   id Int @id @default(autoincrement())
   videoR    video?    @relation(fields: [videoId], references: [id])
   videoId  Int
   descripcion String 
-  archivo String
+  file String
 }
 
 
@@ -50,6 +50,6 @@ model user_comentario{
   userR    usuario?    @relation(fields: [user_id], references: [id])
   user_id  Int
   fecha DateTime   @default(now())
-  comentario String @db.VarChar(255)
+  comment String @db.VarChar(255)
 
 }

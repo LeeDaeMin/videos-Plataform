@@ -1,9 +1,10 @@
 import { IsInt, IsPositive, IsString, MaxLength, MinLength } from "class-validator";
+import { PartialType } from "@nestjs/swagger";
 
 export class CreateVideoDto {
     @IsInt()
     @IsPositive()
-    visualizaciones: number;
+    views: number;
     @IsString()
     @MinLength(5)
     @MaxLength(30)
@@ -11,7 +12,7 @@ export class CreateVideoDto {
     @IsString()
     @MinLength(5)
     @MaxLength(50)
-    titulo: string;
+    title: string;
     @IsString()
     @MaxLength(80)
     descripcion: string;
@@ -20,3 +21,5 @@ export class CreateVideoDto {
     @MaxLength(30)
     src:string;
 }
+
+export class UpdateVideoDto extends PartialType(CreateVideoDto) {}

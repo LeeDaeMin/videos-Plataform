@@ -1,6 +1,7 @@
 import { IsOptional, IsString, MaxLength, MinLength } from "class-validator";
+import { PartialType } from "@nestjs/swagger";
 
-export class CreateUsuarioDto {
+export class CreateUsernameDto {
     @IsString()
     @MinLength(2)
     @MaxLength(10)
@@ -10,5 +11,7 @@ export class CreateUsuarioDto {
     @IsString()
     @MinLength(2)
     @MaxLength(10)
-    perfil: string;
+    profile: string;
 }
+
+export class UpdateUsernameDto extends PartialType(CreateUsernameDto) {}

@@ -1,6 +1,7 @@
 import { IsInt, IsPositive, IsString, MaxLength, Min } from "class-validator";
+import { PartialType } from "@nestjs/swagger";
 
-export class CreateContenidoExtraDto {
+export class CreateBonusContentDto {
     @IsInt()
     @Min(1)
     @IsPositive()
@@ -10,5 +11,7 @@ export class CreateContenidoExtraDto {
     descripcion: string;
     @IsString()
     @MaxLength(80)
-    archivo: string;
+    file: string;
 }
+
+export class UpdateBonusContentDto extends PartialType(CreateBonusContentDto) {}

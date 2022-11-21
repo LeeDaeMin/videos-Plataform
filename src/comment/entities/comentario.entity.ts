@@ -4,6 +4,6 @@
 export class UserComentario{
   id: number;
   id_user: number;
-  comentario: string;
+  comment: string;
   videoId: number;
 }

@@ -1,7 +1,7 @@
 export class Video {
   id: number;
-  visualizaciones: number;
+  views: number;
   author: string;
-  titulo: string;
+  title: string;
   descripcion: string;
 }
