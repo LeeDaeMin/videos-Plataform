@@ -8,6 +8,11 @@ import {usuario as UsuarioModel} from '@prisma/client'
 export class UsernameController {
   constructor(private readonly UsernameService: UsernameService) {}
 
+  @Get('all')
+  async allUsers(): Promise<UsuarioModel[]> {
+    return this.UsernameService.allUsers();
+  }
+
   @Get('/id/:id')
   async findOne(@Param('id') id: string): Promise<UsuarioModel> {
     return this.UsernameService.usuario({ id: Number(id) });

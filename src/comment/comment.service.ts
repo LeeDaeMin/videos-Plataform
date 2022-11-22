@@ -7,10 +7,21 @@ export class CommentService {
   constructor(private prisma: PrismaService) {}
 
   async comment(comentarioWhereUniqueInput: Prisma.user_comentarioWhereUniqueInput): Promise<user_comentario | null> {
-    return this.prisma.user_comentario.findUnique({
+    const busqueda = await this.prisma.user_comentario.findUnique({
       where: comentarioWhereUniqueInput,
+      include: {
+        userR:{
+          select:{
+            username: true,
+            profile: true,
+          }
+        }
+      }
     });
+    return busqueda;
   }
+
+  
 
   async comentario(params: {
     skip?: number;

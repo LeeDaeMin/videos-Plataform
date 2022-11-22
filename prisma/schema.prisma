@@ -24,7 +24,7 @@ model admin{
 
 model video{
   id Int @id @default(autoincrement())
-  view Int 
+  views Int 
   src String
   author String
   fecha DateTime   @default(now())

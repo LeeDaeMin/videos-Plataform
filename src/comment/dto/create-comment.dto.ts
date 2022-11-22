@@ -5,7 +5,7 @@ export class CreateUser_CommentDto {
 
 @IsString()
 @MinLength(10)
-@MaxLength(80)
+@MaxLength(255)
 comment: string;
 
 

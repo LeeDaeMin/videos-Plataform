@@ -12,6 +12,10 @@ export class UsernameService {
     });
   }
 
+  async allUsers(): Promise<usuario[]> {
+    return this.prisma.usuario.findMany();
+  }
+
   async usuarios(params: {
     skip?: number;
     take?: number;
