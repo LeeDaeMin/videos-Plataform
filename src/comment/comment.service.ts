@@ -6,6 +6,10 @@ import {user_comentario, Prisma} from '@prisma/client';
 export class CommentService {
   constructor(private prisma: PrismaService) {}
 
+  async comments(): Promise<user_comentario[]> {
+    return this.prisma.user_comentario.findMany();
+  }
+
   async comment(comentarioWhereUniqueInput: Prisma.user_comentarioWhereUniqueInput): Promise<user_comentario | null> {
     const busqueda = await this.prisma.user_comentario.findUnique({
       where: comentarioWhereUniqueInput,
@@ -20,6 +24,8 @@ export class CommentService {
     });
     return busqueda;
   }
+
+ 
 
   
 

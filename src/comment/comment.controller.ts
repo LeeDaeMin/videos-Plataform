@@ -7,6 +7,11 @@ import { user_comentario as UserComentModel} from '@prisma/client'
 export class CommetController {
   constructor(private readonly CommentService: CommentService) {}
 
+  @Get('all')
+  async getAllComments(): Promise<UserComentModel[]>{
+    return this.CommentService.comments();
+  }
+
   @Get('/id/:id')
   async getComment(@Param('id') id: string):
   Promise<UserComentModel>{

@@ -8,6 +8,10 @@ import { BonusContent as coexModel } from '@prisma/client';
 export class bonusContendController {
   constructor(private readonly BonusContendService: BonusContendService) {}
 
+  @Get('all')
+  async findAll(): Promise<coexModel[]> {
+    return this.BonusContendService.contenidoExtras({});
+  }
   @Get('id/:id')
   async findUnique(@Param('id') id: string): Promise<coexModel> {
     return this.BonusContendService.contenidoExtra({ id: Number(id) });
