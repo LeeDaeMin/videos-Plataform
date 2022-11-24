@@ -60,7 +60,8 @@ export class VideoService {
                     fecha:true,
                     userR:{
                       select:{
-                      username:true
+                      username:true,
+                      profile:true
                     }
                   }
                    },
