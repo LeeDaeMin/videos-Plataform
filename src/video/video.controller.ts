@@ -8,13 +8,8 @@ import {video as videoModel} from '@prisma/client';
 export class VideoController {
   constructor(private readonly videoService: VideoService) {}
 
-  @Get('id/:id')
-  async video(@Param('id') id: string): Promise<videoModel | null> {
-    return this.videoService.video({ id: Number(id) });
-  }
-
   @Get('vervideo/:id')
-  async getComments(@Param('id') id: string): Promise<videoModel | null> {
+  async getComments(@Param('id') id: string): Promise<videoModel> {
     return this.videoService.getComments({ id: Number(id) });
   }
 

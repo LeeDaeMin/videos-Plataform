@@ -43,7 +43,7 @@ export class VideoService {
 
   async getComments(id: Prisma.videoWhereUniqueInput): Promise<video> {
         
-      try {
+
         const video:any = await this.prisma.video.findUnique({
           where: id,
             include:{
@@ -69,23 +69,7 @@ export class VideoService {
             },
           
         });
-        if(!video){
-          throw "Error"; 
-        }
+        console.log(video)
         return video;
-      } catch (error) {
-        throw new HttpException({
-          status: HttpStatus.NOT_FOUND,
-          error: 'No se encontro el video buscado',
-        }, HttpStatus.NOT_FOUND, {
-          cause: error
-        });
-      }
-        
- 
-    
-   
-}
-
-
+  }
 }
